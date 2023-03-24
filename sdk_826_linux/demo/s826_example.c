@@ -49,15 +49,21 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////
 // Globale veriable declaration
 
-// Counter ports 
-uint PlatformMotor = 3;			
-uint RotoryMotor = 4;
-uint MasterMotor = 5;
+// Counter ports initialization
+uint counter_platform_motor = 3;			
+uint counter_rotory_motor = 5;
+uint counter_master_motor = 4;
 
 
-// Encoder read
-uint counts = 0;										// encoder counts when the snapshot was captured
+// Encoder count 
+uint counts_plotform_motor = 0;							// encoder counts when the snapshot was captured in platform motor
+uint counts_rotory_motor = 0;
+uint counts_master_motor = 0;
+
+// 
 uint timestamp;											// time the snapshot was captured
+uint timestamp_pltform;
+uint timestamp_rotory;
 uint timestamp_start;
 uint timestamp_previous;								// time the previous snapshot was captured 
 uint aout = 0;        									// output duplicate waveform on this dac channel
@@ -186,28 +192,43 @@ int main(int argc, char **argv)
 // ENCODER READ ANLOG OUT AND FILE WRITE FUCNTION
 // JKD - 21.02.2023
 
+//	uint counter_platform_motor = 3;			
+//	uint counter_rotory_motor = 5;
+//	uint counter_master_motor = 4;
+
+
+
+// Encoder count 
+//	uint counts_plotform_motor = 0;							// encoder counts when the snapshot was captured in platform motor
+//	uint counts_rotory_motor = 0;
+//	uint counts_master_motor = 0;
+
 static int ControlLoop(uint board)
 {	// ***Configure interfaces and start them running.
 	//X826( S826_DacRangeWrite(board, aout, S826_DAC_SPAN_10_10, 0)); // program dac output range: -10V to +10V
 	X826( S826_DacRangeWrite(board, aout, S826_DAC_SPAN_0_5, 0));// program dac output range: -0V to +5V , motor 0 value is 2.5V / for motor drive operation
 	
 	
-	X826( S826_CounterModeWrite(board, 1, S826_CM_K_QUADX4)); // Configure counter0 as incremental encoder interface. quadrature
-
-	X826( S826_CounterStateWrite(board, 1, 1) ); // Start tracking encoder position.	
+	X826( S826_CounterModeWrite(board, counter_platform_motor, S826_CM_K_QUADX4)); // Configure counter0 as incremental encoder interface. quadrature
+	X826( S826_CounterStateWrite(board, counter_platform_motor, 1) ); // Start tracking encoder position.
+	X826( S826_CounterModeWrite(board, counter_rotory_motor, S826_CM_K_QUADX4)); // Configure counter0 as incremental encoder interface. quadrature
+	X826( S826_CounterStateWrite(board, counter_rotory_motor, 1) ); // Start tracking encoder position.	
 
 	I_motor = 0.0;	//stop the mortor input current
 	MotorOutDAC(board);
-	X826( S826_CounterSnapshot(board, 1)); // Trigger snapshot on counter 0.
-	X826( S826_CounterSnapshotRead(board, 1, &counts, &timestamp_start, NULL, 0));// Read the snapshot:
+	
+	X826( S826_CounterSnapshot(board, counter_platform_motor)); // Trigger snapshot on counter 0.
+	X826( S826_CounterSnapshotRead(board, counter_platform_motor, &counts_plotform_motor, &timestamp_start, NULL, 0));// Read the snapshot:
 	printf("Timestamp:%d \n",timestamp_start);
-	printf("counts:%d \n",counts);
+	printf("counts:%d \n",counts_plotform_motor);
 
 
 	// ****file write operation
 	FILE *fp;// file pointer file file operation
-	fp = fopen("test8.txt", "a+");
+	fp = fopen("test11.txt", "a+");
 
+
+//	To remove the startup error we can can run 10 cycles of data
 
 //	for(i=0;i<10;i++)
 //	{
@@ -215,11 +236,12 @@ static int ControlLoop(uint board)
 //		VelocityCalculation();
 //		
 //		MotorOutDAC(board); // the mortor input current
-		X826( S826_CounterSnapshot(board, 0)); // Trigger snapshot on counter 0.
-		X826( S826_CounterSnapshotRead(board, 0, &counts, &timestamp, NULL, 0));
+//		X826( S826_CounterSnapshot(board, 0)); // Trigger snapshot on counter 0.
+//		X826( S826_CounterSnapshotRead(board, 0, &counts_plotform_motor, &timestamp, NULL, 0));
 //	}
+
 	// 1
-	for(i=0;i<200000;i++)
+	for(i=0;i<1200000;i++)
 	{	
 //		if (F_ref < F_ref_max)
 //		{
@@ -234,11 +256,17 @@ static int ControlLoop(uint board)
 //		RToB();
 //		dtCalculation();
 //		VelocityCalculation();
-//		MotorOutDAC(board);// the mortor input current
-		X826( S826_CounterSnapshot(board, 1));// Trigger snapshot on counter 0.
-		X826( S826_CounterSnapshotRead(board, 1, &counts, &timestamp, NULL, 0));// Read the snapshot:receive the snapshot info here; no need to wait for snapshot; it's already been captured
-		steps = counts;
-		fprintf(fp,"%f,%f,%f,%d\n",function_exicution_time,F_ref,rtob_torque,steps);
+		I_motor = 0.6;
+		MotorOutDAC(board);	// the mortor input current
+
+		X826( S826_CounterSnapshot(board, counter_platform_motor)); // Trigger snapshot on counter 0.
+		X826( S826_CounterSnapshot(board, counter_rotory_motor)); // Trigger snapshot on counter 0.
+
+		X826( S826_CounterSnapshotRead(board, counter_platform_motor, &counts_plotform_motor, &timestamp_pltform, NULL, 0));// Read the snapshot:
+		
+		X826( S826_CounterSnapshotRead(board, counter_rotory_motor, &counts_rotory_motor, &timestamp_rotory, NULL, 0));// Read the snapshot:
+		
+		fprintf(fp,"%d,%d,%d,%d\n",timestamp_pltform,timestamp_rotory,counts_plotform_motor,counts_rotory_motor);
 	}
 
 	
@@ -250,7 +278,8 @@ static int ControlLoop(uint board)
 	I_motor = 0.0;
 	I_a_ref = 0.0;//stop the mortor input current
 	MotorOutDAC(board);
-	X826( S826_CounterStateWrite(board, 1, 0)); // Stop tracking encoder position.
+	X826( S826_CounterStateWrite(board, counter_platform_motor, 0)); // Stop tracking encoder position.
+	X826( S826_CounterStateWrite(board, counter_rotory_motor, 0)); // Stop tracking encoder position.
 
 	return errcode;
 } // end of main function
@@ -259,14 +288,14 @@ static int ControlLoop(uint board)
 // Motor drive input volate genarating function, using dac
 static int MotorOutDAC(uint board)
 {	
-	if (I_motor < -0.59)
+	if (I_motor < -1.5)
 	{
-		I_motor = -0.59;
-	}else if(I_motor > 0.59)
+		I_motor = -1.5;
+	}else if(I_motor > 1.5)
 	{
-		I_motor = 0.59;
+		I_motor = 1.5;
 	}
-	analog_out_motor = (unsigned int)(32768 + (I_motor/0.6)*32768);			// DAC senstivity 16 bit (2**16)movo zero vlaue 0 -->  2.5V out in dac
+	analog_out_motor = (unsigned int)(32768 + (I_motor/1.5)*32768);			// DAC senstivity 16 bit (2**16)movo zero vlaue 0 -->  2.5V out in dac
 	X826( S826_DacDataWrite(board, aout, analog_out_motor, 0) );		// Analog value out from dac
 	return 0;															// negativa current - negative cont, Positive current positive counter incrimet
 }
