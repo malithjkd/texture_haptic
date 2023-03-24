@@ -1,0 +1,1 @@
+cmd_/home/linux/Documents/texture_haptic/sdk_826_linux/driver/modules.order := {   echo /home/linux/Documents/texture_haptic/sdk_826_linux/driver/s826.ko; :; } | awk '!x[$$0]++' - > /home/linux/Documents/texture_haptic/sdk_826_linux/driver/modules.order
