@@ -231,7 +231,7 @@ static int ControlLoop(uint board)
 
 	// ****file write operation
 	FILE *fp;// file pointer file file operation
-	fp = fopen("/home/linux/Documents/texture_haptic/raw_data/s2_f175_i002.txt", "a+");
+	fp = fopen("/home/linux/Documents/texture_haptic/raw_data/s3_f175_i002.txt", "a+");
 
 
 //	To remove the startup error we can can run 10 cycles of data
