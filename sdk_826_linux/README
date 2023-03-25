@@ -1,3 +1,4 @@
+make modules && sudo make install && modprobe s826 && dmesg && ls -al /dev/s826*
 Sensoray 826 Linux SDK
 
 Linux driver and demo programs.
