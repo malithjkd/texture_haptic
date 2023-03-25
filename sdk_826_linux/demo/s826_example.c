@@ -222,26 +222,32 @@ static int ControlLoop(uint board)
 	printf("Timestamp:%d \n",timestamp_start);
 	printf("counts:%d \n",counts_plotform_motor);
 
+	X826( S826_CounterSnapshot(board, counter_platform_motor)); // Trigger snapshot on counter 0.
+	X826( S826_CounterSnapshotRead(board, counter_platform_motor, &counts_plotform_motor, &timestamp, NULL, 0));// Read the snapshot:
+	printf("Timestamp:%d \n",timestamp);
+	printf("counts:%d \n",counts_plotform_motor);
+
+	dtCalculation();
 
 	// ****file write operation
 	FILE *fp;// file pointer file file operation
-	fp = fopen("test11.txt", "a+");
+	fp = fopen("/home/linux/Documents/texture_haptic/raw_data/s2_f175_i002.txt", "a+");
 
 
 //	To remove the startup error we can can run 10 cycles of data
 
-//	for(i=0;i<10;i++)
+//	for(i=0;i<5;i++)
 //	{
 //		dtCalculation();
 //		VelocityCalculation();
-//		
+		
 //		MotorOutDAC(board); // the mortor input current
-//		X826( S826_CounterSnapshot(board, 0)); // Trigger snapshot on counter 0.
-//		X826( S826_CounterSnapshotRead(board, 0, &counts_plotform_motor, &timestamp, NULL, 0));
+//		X826( S826_CounterSnapshot(board, counter_rotory_motor)); 									// Trigger snapshot on counter counter_rotory_motor.
+//		X826( S826_CounterSnapshotRead(board, 0, &counts_rotory_motor, &timestamp, NULL, 0));		// read the data 
 //	}
 
 	// 1
-	for(i=0;i<1200000;i++)
+	for(i=0;i<400000;i++)
 	{	
 //		if (F_ref < F_ref_max)
 //		{
@@ -254,9 +260,10 @@ static int ControlLoop(uint board)
 //		I_motor = I_a_ref + (dob_torque/K_tn);
 //		DoB();
 //		RToB();
-//		dtCalculation();
+		dtCalculation();
 //		VelocityCalculation();
-		I_motor = 0.6;
+		I_motor = 0.175;
+	
 		MotorOutDAC(board);	// the mortor input current
 
 		X826( S826_CounterSnapshot(board, counter_platform_motor)); // Trigger snapshot on counter 0.
@@ -264,9 +271,9 @@ static int ControlLoop(uint board)
 
 		X826( S826_CounterSnapshotRead(board, counter_platform_motor, &counts_plotform_motor, &timestamp_pltform, NULL, 0));// Read the snapshot:
 		
-		X826( S826_CounterSnapshotRead(board, counter_rotory_motor, &counts_rotory_motor, &timestamp_rotory, NULL, 0));// Read the snapshot:
+		X826( S826_CounterSnapshotRead(board, counter_rotory_motor, &counts_rotory_motor, &timestamp, NULL, 0));// Read the snapshot:
 		
-		fprintf(fp,"%d,%d,%d,%d\n",timestamp_pltform,timestamp_rotory,counts_plotform_motor,counts_rotory_motor);
+		fprintf(fp,"%f,%d,%d\n",function_exicution_time,counts_plotform_motor,counts_rotory_motor);
 	}
 
 	
@@ -288,14 +295,15 @@ static int ControlLoop(uint board)
 // Motor drive input volate genarating function, using dac
 static int MotorOutDAC(uint board)
 {	
-	if (I_motor < -1.5)
+	if (I_motor < 0)
 	{
-		I_motor = -1.5;
-	}else if(I_motor > 1.5)
+		I_motor = 0;
+	}else if(I_motor > 1.0)
 	{
-		I_motor = 1.5;
+		I_motor = 1.0;
 	}
-	analog_out_motor = (unsigned int)(32768 + (I_motor/1.5)*32768);			// DAC senstivity 16 bit (2**16)movo zero vlaue 0 -->  2.5V out in dac
+//	analog_out_motor = (unsigned int)(32768 + (I_motor/1.5)*32768);			// DAC senstivity 16 bit (2**16)movo zero vlaue 0 -->  2.5V out in dac
+	analog_out_motor = (unsigned int)(I_motor*65635);					// DAC senstivity 16 bit (2**16)movo zero vlaue 0 -->  0V out in dac
 	X826( S826_DacDataWrite(board, aout, analog_out_motor, 0) );		// Analog value out from dac
 	return 0;															// negativa current - negative cont, Positive current positive counter incrimet
 }
