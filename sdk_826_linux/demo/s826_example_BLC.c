@@ -286,11 +286,12 @@ static int ControlLoop(uint board)
 	fclose(fp);
 
 	// Injecting nevagive current, stopping cycle
-	F_ref = 0.0;
-	I_motor = 0.0;
-	I_a_ref = 0.0;//stop the mortor input current
+	F_ref_m = 0.0;
+    F_ref_r = 0.0;
+	I_motor_m = 0.0;
+    I_motor_r = 0.0;
 	MotorOutDAC(board);
-	X826( S826_CounterStateWrite(board, counter_platform_motor, 0)); // Stop tracking encoder position.
+	X826( S826_CounterStateWrite(board, counter_master_motor, 0)); // Stop tracking encoder position.
 	X826( S826_CounterStateWrite(board, counter_rotory_motor, 0)); // Stop tracking encoder position.
 
 	return errcode;

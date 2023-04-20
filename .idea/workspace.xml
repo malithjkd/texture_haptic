@@ -7,56 +7,9 @@
     <configurations />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="907fd8c6-f92a-4cc7-a86f-844723a2f4fc" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AI_Model/.ipynb_checkpoints/AI_model_TS-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/AI_Model/.ipynb_checkpoints/AI_model_TS-checkpoint.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AI_Model/.ipynb_checkpoints/AI_model_TS_testing-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/AI_Model/.ipynb_checkpoints/AI_model_TS_testing-checkpoint.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AI_Model/.ipynb_checkpoints/Classification-checkpoint.py" beforeDir="false" afterPath="$PROJECT_DIR$/AI_Model/.ipynb_checkpoints/Classification-checkpoint.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AI_Model/.ipynb_checkpoints/Data_Preprocess-checkpoint.py" beforeDir="false" afterPath="$PROJECT_DIR$/AI_Model/.ipynb_checkpoints/Data_Preprocess-checkpoint.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AI_Model/.ipynb_checkpoints/EvaluateCode-checkpoint.py" beforeDir="false" afterPath="$PROJECT_DIR$/AI_Model/.ipynb_checkpoints/EvaluateCode-checkpoint.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AI_Model/.ipynb_checkpoints/Untitled-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/AI_Model/.ipynb_checkpoints/Untitled-checkpoint.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AI_Model/.vscode/launch.json" beforeDir="false" afterPath="$PROJECT_DIR$/AI_Model/.vscode/launch.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AI_Model/AI_model_TS.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/AI_Model/AI_model_TS.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AI_Model/AI_model_TS_testing.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/AI_Model/AI_model_TS_testing.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AI_Model/Classification.py" beforeDir="false" afterPath="$PROJECT_DIR$/AI_Model/Classification.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AI_Model/Data_Preprocess.py" beforeDir="false" afterPath="$PROJECT_DIR$/AI_Model/Data_Preprocess.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AI_Model/EvaluateCode.py" beforeDir="false" afterPath="$PROJECT_DIR$/AI_Model/EvaluateCode.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AI_Model/ReadMe_FYP.md" beforeDir="false" afterPath="$PROJECT_DIR$/AI_Model/ReadMe_FYP.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AI_Model/Untitled.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/AI_Model/Untitled.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_processing/.ipynb_checkpoints/Data_pre_processing-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/data_processing/.ipynb_checkpoints/Data_pre_processing-checkpoint.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_processing/.ipynb_checkpoints/data_visulalization-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/data_processing/.ipynb_checkpoints/data_visulalization-checkpoint.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_processing/Data_pre_processing.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/data_processing/Data_pre_processing.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_processing/data_visulalization.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/data_processing/data_visulalization.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/raw_data/.ipynb_checkpoints/s1_f100_i001-checkpoint.txt" beforeDir="false" afterPath="$PROJECT_DIR$/raw_data/.ipynb_checkpoints/s1_f100_i001-checkpoint.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sdk_826_linux/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/sdk_826_linux/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sdk_826_linux/README.fedora" beforeDir="false" afterPath="$PROJECT_DIR$/sdk_826_linux/README.fedora" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sdk_826_linux/demo/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/sdk_826_linux/demo/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sdk_826_linux/demo/client_c/client_c.c" beforeDir="false" afterPath="$PROJECT_DIR$/sdk_826_linux/demo/client_c/client_c.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sdk_826_linux/demo/client_c/client_connect.c" beforeDir="false" afterPath="$PROJECT_DIR$/sdk_826_linux/demo/client_c/client_connect.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sdk_826_linux/demo/client_c/send_data.h" beforeDir="false" afterPath="$PROJECT_DIR$/sdk_826_linux/demo/client_c/send_data.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sdk_826_linux/demo_gui/app-826-csharp/app-826-csharp.userprefs" beforeDir="false" afterPath="$PROJECT_DIR$/sdk_826_linux/demo_gui/app-826-csharp/app-826-csharp.userprefs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sdk_826_linux/demo_gui/app-826-csharp/app-826-csharp/Form1.Designer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/sdk_826_linux/demo_gui/app-826-csharp/app-826-csharp/Form1.Designer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sdk_826_linux/demo_gui/app-826-csharp/app-826-csharp/Form1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/sdk_826_linux/demo_gui/app-826-csharp/app-826-csharp/Form1.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sdk_826_linux/demo_gui/app-826-csharp/app-826-csharp/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/sdk_826_linux/demo_gui/app-826-csharp/app-826-csharp/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sdk_826_linux/demo_gui/app-826-csharp/app-826-csharp/Properties/Resources.Designer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/sdk_826_linux/demo_gui/app-826-csharp/app-826-csharp/Properties/Resources.Designer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sdk_826_linux/demo_gui/app-826-csharp/app-826-csharp/mid826.cs" beforeDir="false" afterPath="$PROJECT_DIR$/sdk_826_linux/demo_gui/app-826-csharp/app-826-csharp/mid826.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sdk_826_linux/driver/.Module.symvers.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/sdk_826_linux/driver/.Module.symvers.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sdk_826_linux/driver/.modules.order.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/sdk_826_linux/driver/.modules.order.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sdk_826_linux/driver/.s826.ko.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/sdk_826_linux/driver/.s826.ko.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sdk_826_linux/driver/.s826.mod.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/sdk_826_linux/driver/.s826.mod.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sdk_826_linux/driver/.s826.mod.o.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/sdk_826_linux/driver/.s826.mod.o.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sdk_826_linux/driver/.s826.o.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/sdk_826_linux/driver/.s826.o.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sdk_826_linux/driver/10-local-826.rules" beforeDir="false" afterPath="$PROJECT_DIR$/sdk_826_linux/driver/10-local-826.rules" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sdk_826_linux/driver/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/sdk_826_linux/driver/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sdk_826_linux/driver/modules.order" beforeDir="false" afterPath="$PROJECT_DIR$/sdk_826_linux/driver/modules.order" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sdk_826_linux/driver/s826.c" beforeDir="false" afterPath="$PROJECT_DIR$/sdk_826_linux/driver/s826.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sdk_826_linux/driver/s826.mod" beforeDir="false" afterPath="$PROJECT_DIR$/sdk_826_linux/driver/s826.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sdk_826_linux/driver/s826.mod.c" beforeDir="false" afterPath="$PROJECT_DIR$/sdk_826_linux/driver/s826.mod.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sdk_826_linux/driver/s826ioctl.h" beforeDir="false" afterPath="$PROJECT_DIR$/sdk_826_linux/driver/s826ioctl.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sdk_826_linux/middleware/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/sdk_826_linux/middleware/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sdk_826_linux/middleware/s826ioctl_linux.h" beforeDir="false" afterPath="$PROJECT_DIR$/sdk_826_linux/middleware/s826ioctl_linux.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sdk_826_linux/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/sdk_826_linux/readme.md" afterDir="false" />
+    <list default="true" id="907fd8c6-f92a-4cc7-a86f-844723a2f4fc" name="Changes" comment="Bilateral control code variable definition">
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sdk_826_linux/demo/s826_example_BLC.c" beforeDir="false" afterPath="$PROJECT_DIR$/sdk_826_linux/demo/s826_example_BLC.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,8 +49,16 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1681987475903</updated>
-      <workItem from="1681987479444" duration="3983000" />
+      <workItem from="1681987479444" duration="4293000" />
     </task>
+    <task id="LOCAL-00001" summary="Bilateral control code variable definition">
+      <created>1681991611346</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1681991611346</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -121,5 +82,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Bilateral control code variable definition" />
+    <option name="LAST_COMMIT_MESSAGE" value="Bilateral control code variable definition" />
   </component>
 </project>
