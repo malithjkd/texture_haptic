@@ -8,8 +8,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="907fd8c6-f92a-4cc7-a86f-844723a2f4fc" name="Changes" comment="Bilateral control code variable definition">
+      <change afterPath="$PROJECT_DIR$/sdk_826_linux/demo/s826_example_BLC_EFR.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sdk_826_linux/demo/s826_example_BLC.c" beforeDir="false" afterPath="$PROJECT_DIR$/sdk_826_linux/demo/s826_example_BLC.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,7 +58,7 @@
       <option name="presentableId" value="Default" />
       <updated>1681987475903</updated>
       <workItem from="1681987479444" duration="4293000" />
-      <workItem from="1681992214560" duration="2333000" />
+      <workItem from="1681992214560" duration="2494000" />
     </task>
     <task id="LOCAL-00001" summary="Bilateral control code variable definition">
       <created>1681991611346</created>
