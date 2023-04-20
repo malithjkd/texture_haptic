@@ -77,10 +77,7 @@ long long int i ;
 
 float function_exicution_time = 0.0;
 float dt = 0.0;
-float F_ref_m = 0.0;
-float F_ref_max_m = 0.0;
-float F_ref_min_m = 0.0;
-float F_ref_r = 0.0;
+
 
 // motor drive operation
 unsigned int analog_out_motor_m;
@@ -127,7 +124,6 @@ float dob_filter_output_r = 0.0;
 float dob_force_r = 0.0;
 int const g_dis = 200;
 
-
 // RTOB
 float rtob_filter_input_m = 0.0;
 float rtob_filter_output_m = 0.0;
@@ -140,10 +136,26 @@ float rtob_force_r = 0.0;
 // PID
 float const C_f = 1.0;
 
-float const K_p = 900;
-float const K_d = 60;
+float const K_p_m = 900;
+float const K_d_m = 60;
 
-// end of veriable declarations
+float const K_p_r = 900;
+float const K_d_r = 60;
+
+// Bilateral Controller
+float x_error_m = 0.0;
+float x_error_r = 0.0;
+float x_error_m_prev = 0.0;
+float x_error_r_prev = 0.0;
+float alpha = 0.0;
+float beta = 0.0;
+float out_PD_m = 0.0;
+float out_PD_r = 0.0;
+float f_error = 0.0;
+float f_m = 0.0;
+float f_r = 0.0;
+
+// end of variable declarations
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 // Function declaration
@@ -261,23 +273,27 @@ static int ControlLoop(uint board)
 		X826( S826_CounterSnapshotRead(board, counter_platform_motor, &counts_plotform_motor, &timestamp_pltform, NULL, 0));// Read the snapshot:
 		X826( S826_CounterSnapshotRead(board, counter_rotory_motor, &counts_rotory_motor, &timestamp, NULL, 0));// Read the snapshot:
 
+        x_error_m = (position_x_r*alpha - position_x_m);
+        out_PD_m = K_p_m * x_error_m + K_d_m * (x_error_m - x_error_m_prev) / dt;
+        x_error_m_prev = x_error_m;
+
+        x_error_r = (position_x_m - position_x_r*alpha);
+        out_PD_r = K_p_r * x_error_r + K_d_r * (x_error_r - x_error_r_prev) / dt;
+        x_error_r_prev = x_error_r;
+
         dtCalculation();
-		VelocityCalculation();
+        VelocityCalculation();
         DoB();
         RToB();
-//
-//		if (F_ref < F_ref_max)
-//		{
-//			F_ref = F_ref + dt * ramp_rate;
-//		}else
-//		{
-//			F_ref = F_ref;
-//		}
-//		I_a_ref = K_p*(F_ref - rtob_torque)*(M_n/K_tn);
-//		I_motor = I_a_ref + (dob_torque/K_tn);
-//
-//		I_motor = 0.175;
-	
+
+        f_error = rtob_force_m + beta * rtob_force_r;
+
+        f_m = (out_PD_m * beta / (alpha + beta)- f_error * alpha / (alpha + beta) * C_f)*(M_n_m*M_n_r/(M_n_r+M_n_m));
+        f_r = (out_PD_r / (alpha + beta) - f_error/(alpha + beta) * C_f)*(M_n_m*M_n_r/(M_n_r+M_n_m));
+
+        I_motor_m = (f_m + dob_force_m) / K_tn_m;
+        I_motor_r = (f_r + dob_force_r) / K_tn_r;
+
 		MotorOutDAC(board);	// the motor input current
 		
 		fprintf(fp,"%f,%d,%d\n",function_exicution_time,counts_plotform_motor,counts_rotory_motor);
@@ -286,8 +302,6 @@ static int ControlLoop(uint board)
 	fclose(fp);
 
 	// Injecting nevagive current, stopping cycle
-	F_ref_m = 0.0;
-    F_ref_r = 0.0;
 	I_motor_m = 0.0;
     I_motor_r = 0.0;
 	MotorOutDAC(board);
