@@ -1,0 +1,177 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+#include <arpa/inet.h>
+// #include <json-c/json.h>
+
+#include <time.h>
+
+#include <stdio.h>
+#include <stdlib.h>
+
+// #include "hashmap.h"
+// #include "dynamicarray.h"
+// #include "strstream.h"
+
+//#include "json.h"
+#include "json/json.h"
+
+#include "client_send.h"
+
+#define PORT 4455
+
+float function_exicution_time = 0.0;	
+float position_x = 0.0;
+float F_ref = 0.0;
+float rtob_force = 0.0;
+
+// struct dataset {        
+//     float position, force;
+//     int cycle_no;
+//     char  title[50];
+// };
+
+// struct problem {        
+//     char letter[1];
+//     int number[1];
+// };
+
+int main(){
+
+  function_exicution_time = 54.0;	
+  position_x = 45.5;
+  F_ref = 78.5;
+  rtob_force = 589.256;
+
+
+  /*Creating a json object*/
+  json_object * jobj = json_object_new_object();
+
+  // /*Creating a json integer*/
+  // json_object *jint = json_object_new_int(10);
+
+
+  /*Creating a json double*/
+  json_object *function_exicution_time_obj = json_object_new_double((double)function_exicution_time);
+  json_object *position_x_obj = json_object_new_double((double)position_x);
+  json_object *F_ref_obj = json_object_new_double((double)F_ref);
+  json_object *rtob_force_obj = json_object_new_double((double)rtob_force);
+
+
+  /*Form the json object*/
+  /*Each of these is like a key value pair*/
+  json_object_object_add(jobj,"Average posts per day", function_exicution_time_obj);
+  json_object_object_add(jobj,"Average posts per day", position_x_obj);
+  json_object_object_add(jobj,"Average posts per day", F_ref_obj);
+  json_object_object_add(jobj,"Average posts per day", rtob_force_obj);
+
+  /*Now printing the json object*/
+  printf ("json object: %sn",json_object_to_json_string(jobj));
+
+  // /*Creating a json object*/
+  // json_object * jobj = json_object_new_object();
+  // float force =4.09;
+  // int cycle_no =1;
+  // float marks[2]={20.09,67.89};  
+
+  // /*Creating a json integer*/
+  // json_object *jint = json_object_new_int(10);
+
+  // /*Creating a json double*/
+  // json_object *jdouble = json_object_new_double(force);
+
+  
+  // /*Form the json object*/
+  // json_object_object_add(jobj,"Force", jdouble);
+  // json_object_object_add(jobj,"Number of posts", jint);
+  
+
+
+  // dict m = {"id": 2, "f": 5.32, "name": "abc"} 
+  // float array[]={3.4,5.3};
+  //char *ip = "127.0.0.1";
+  // int port = 4455;
+  // struct dataset dataset1 ={2.36,5.23,1,"nn"};     
+
+  int sock;
+  struct sockaddr_in addr;
+  socklen_t addr_size;
+  char buffer[1024];
+  int n;
+
+  time_t seconds;
+
+  sock = socket(AF_INET, SOCK_STREAM, 0);
+  if (sock < 0){
+    perror("[-]Socket error");
+    exit(1);
+  }
+  printf("[+]TCP server socket created.\n");
+
+  memset(&addr, '\0', sizeof(addr));
+  addr.sin_family = AF_INET;
+
+
+  // Important to keep hton(Port)
+  // addr.sin_port = port;
+  addr.sin_port = htons(PORT);
+  addr.sin_addr.s_addr = inet_addr("127.0.0.1");
+
+  connect(sock, (struct sockaddr*)&addr, sizeof(addr));
+  printf("Connected to the server.\n");
+
+  // memset(buffer, '\0', sizeof(buffer));
+  // strcpy( Book1.title, "C Programming");
+
+  // strcpy( dataset1.title, "Nuha");
+  // send(sock, array, strlen(array), 0);
+
+  int a;
+  char *str = json_dump(jobj, true, &a);
+ 
+  strcpy(buffer, str);
+  // strcpy(buffer, "Hello, This is a test message");
+  send(sock, buffer, strlen(buffer), 0);
+  printf("%s\n",buffer);
+
+  
+  
+  // printf("%s\n", str);
+  // free(str);
+
+  // printf(dataset1.title);
+   // Stores time seconds
+  time(&seconds);
+  printf("Time to send from client %ld\n", seconds);
+
+  memset(buffer, '\0', sizeof(buffer));
+  recv(sock, buffer, 1024, 0);
+  printf("[CLIENT] %s\n", buffer);
+  // Stores time seconds
+  time(&seconds);
+  printf("Time to receive to client %ld.%.7ld\n", seconds);
+
+  /* 
+  bzero(buffer, 1024);
+  strcpy(buffer, "HELLO, THIS IS CLIENT.");
+  printf("Client: %s\n", buffer);
+  send(sock, buffer, strlen(buffer), 0);
+  // Stores time seconds
+  time(&seconds);
+  printf("Time to send to server %0.7ld\n", seconds);
+
+  bzero(buffer, 1024);
+  recv(sock, buffer, sizeof(buffer), 0);
+  printf("Server: %s\n", buffer);
+  time(&seconds);
+  printf("Time to receive to server %ld.%.7ld\n", seconds);
+
+  */
+
+  close(sock);
+  printf("Disconnected from the server.\n");
+
+  return 0;
+
+}

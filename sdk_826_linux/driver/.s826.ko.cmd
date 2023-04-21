@@ -1,0 +1,1 @@
+cmd_/home/linux/Documents/texture_haptic/sdk_826_linux/driver/s826.ko := ld -r  -m elf_x86_64 -z noexecstack   --build-id=sha1  -T scripts/module.lds -o /home/linux/Documents/texture_haptic/sdk_826_linux/driver/s826.ko /home/linux/Documents/texture_haptic/sdk_826_linux/driver/s826.o /home/linux/Documents/texture_haptic/sdk_826_linux/driver/s826.mod.o;  true
